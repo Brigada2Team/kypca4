@@ -138,7 +138,7 @@ namespace DataBaseLab2
                         productInStockTableAdapter.UpdateQuery(selectedCells[0].Value.ToString(), Convert.ToDouble(selectedCells[2].Value), Convert.ToInt32(e.FormattedValue), selectedCells[0].Value.ToString(), Convert.ToInt32(selectedCells[5].Value));
                     }
                 }
-                catch { }
+                catch {  }
                 productInStockTableAdapter.Fill(databaseForLabDataSet.ProductInStock);
                 productTableAdapter.Fill(databaseForLabDataSet.Product);
                 dataGridView1.DataSource = databaseForLabDataSet.View2;
