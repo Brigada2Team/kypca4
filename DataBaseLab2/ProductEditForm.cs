@@ -26,7 +26,7 @@ namespace DataBaseLab2
         public ProductEditForm()
         {
             InitializeComponent();
-            edit = false;
+            
         }
 
         public void ProductEditForm_Load(object sender, EventArgs e)
@@ -61,7 +61,7 @@ namespace DataBaseLab2
             if (edit)
             {
                 productTableAdapter.UpdateQuery(textBox_Name.Text, comboBox_Unit.Text, Convert.ToDecimal(textBox_UnitCost.Text),
-                textBox_Type.Text,textBox_Name.Text);
+                textBox_Type.Text,name);
             }
             else
             {

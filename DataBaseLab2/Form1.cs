@@ -164,5 +164,14 @@ namespace DataBaseLab2
 
             employeeTableAdapter.Update(databaseForLabDataSet);
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var selectedRow = dataGridView1.Rows[e.RowIndex].Cells;
+            var edt = new ProductEditForm(selectedRow[0].Value.ToString(),selectedRow[1].Value.ToString(), Convert.ToDecimal(selectedRow[2].Value), selectedRow[3].Value.ToString());
+            edt.ShowDialog();
+            productTableAdapter.Fill(databaseForLabDataSet.Product);
+            databaseForLabDataSet.AcceptChanges();
+        }
     }
 }
