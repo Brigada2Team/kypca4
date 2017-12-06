@@ -22,11 +22,7 @@ namespace DataBaseLab2
             // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.Employee". При необходимости она может быть перемещена или удалена.
             this.employeeTableAdapter.Fill(this.databaseForLabDataSet.Employee);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.ProductInInvoice". При необходимости она может быть перемещена или удалена.
-            this.productInInvoiceTableAdapter.Fill(this.databaseForLabDataSet.ProductInInvoice);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.Invoice". При необходимости она может быть перемещена или удалена.
-            this.invoiceTableAdapter.Fill(this.databaseForLabDataSet.Invoice);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.ProductInStock". При необходимости она может быть перемещена или удалена.
-            this.productInStockTableAdapter.Fill(this.databaseForLabDataSet.ProductInStock);
+            
             // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.Supplier". При необходимости она может быть перемещена или удалена.
             this.supplierTableAdapter.Fill(this.databaseForLabDataSet.Supplier);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.Stock". При необходимости она может быть перемещена или удалена.
@@ -41,11 +37,7 @@ namespace DataBaseLab2
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
-            productTableAdapter.Update(databaseForLabDataSet);
-            supplierTableAdapter.Update(databaseForLabDataSet);
-            stockTableAdapter.Update(databaseForLabDataSet);
-            productInStockTableAdapter.Update(databaseForLabDataSet);
-            employeeTableAdapter.Update(databaseForLabDataSet);
+            
         }
 
         private void productsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -53,6 +45,7 @@ namespace DataBaseLab2
 
             bindingNavigator1.BindingSource = productBindingSource;
             dataGridView1.DataSource = productBindingSource;
+            
             label1.Text = "Продукты";
         }
 
@@ -64,10 +57,6 @@ namespace DataBaseLab2
             label1.Text = "Склады";
         }
 
-        private void tableToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void suppliersToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -84,15 +73,6 @@ namespace DataBaseLab2
 
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            productTableAdapter.Update(databaseForLabDataSet);
-            supplierTableAdapter.Update(databaseForLabDataSet);
-            stockTableAdapter.Update(databaseForLabDataSet);
-            productInStockTableAdapter.Update(databaseForLabDataSet);
-            employeeTableAdapter.Update(databaseForLabDataSet);
-
-        }
 
 
         private void inventoryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -100,17 +80,8 @@ namespace DataBaseLab2
             var InventoryForm = new InventoryForm();
             InventoryForm.ShowDialog();
             productTableAdapter.Fill(databaseForLabDataSet.Product);
-            databaseForLabDataSet.AcceptChanges();
+            
         }
-
-
-
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
 
 
 
@@ -124,19 +95,19 @@ namespace DataBaseLab2
         private void displayToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var invoicesForm = new DisplayInvoices();
-            invoicesForm.Show();
+            invoicesForm.ShowDialog();
         }
 
         private void reportFormToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ReportForm report = new ReportForm();
-            report.Show();
+            ChartForm report = new ChartForm();
+            report.ShowDialog();
         }
 
         private void QueryEditToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var qe = new QueryEdit();
-            qe.Show();
+            qe.ShowDialog();
         }
 
         private void employersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -148,30 +119,62 @@ namespace DataBaseLab2
 
         private void AddItemStripButton_Click(object sender, EventArgs e)
         {
-            var edt = new ProductEditForm();
-            edt.ShowDialog();
-            productTableAdapter.Fill(databaseForLabDataSet.Product);
-            databaseForLabDataSet.AcceptChanges();
+            if (label1.Text == "Продукты")
+            {
+                var edt = new ProductEditForm();
+                edt.ShowDialog();
+                productTableAdapter.Fill(databaseForLabDataSet.Product);
+            }
+            if (label1.Text == "Склады")
+            {
+                var edt = new StockEditForm();
+                edt.ShowDialog();
+                stockTableAdapter.Fill(databaseForLabDataSet.Stock);
+            }
+                databaseForLabDataSet.AcceptChanges();
         }
 
-        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            productTableAdapter.Update(databaseForLabDataSet);
-            
-            supplierTableAdapter.Update(databaseForLabDataSet);
-            stockTableAdapter.Update(databaseForLabDataSet);
-            productInStockTableAdapter.Update(databaseForLabDataSet);
 
-            employeeTableAdapter.Update(databaseForLabDataSet);
-        }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+
             var selectedRow = dataGridView1.Rows[e.RowIndex].Cells;
-            var edt = new ProductEditForm(selectedRow[0].Value.ToString(),selectedRow[1].Value.ToString(), Convert.ToDecimal(selectedRow[2].Value), selectedRow[3].Value.ToString());
-            edt.ShowDialog();
-            productTableAdapter.Fill(databaseForLabDataSet.Product);
-            databaseForLabDataSet.AcceptChanges();
+            if (label1.Text == "Продукты")
+            {
+                var edt = new ProductEditForm(selectedRow[0].Value.ToString(), selectedRow[1].Value.ToString(), Convert.ToDecimal(selectedRow[2].Value), selectedRow[3].Value.ToString());
+                edt.ShowDialog();
+                productTableAdapter.Fill(databaseForLabDataSet.Product);
+            }
+            if (label1.Text == "Склады")
+            {
+                var edt = new StockEditForm(Convert.ToInt32(selectedRow[0].Value), selectedRow[1].Value.ToString());
+                edt.ShowDialog();
+                stockTableAdapter.Fill(databaseForLabDataSet.Stock);
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            int selected = dataGridView1.Rows.IndexOf(dataGridView1.SelectedRows[0]);
+            try
+            {
+                dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
+                productTableAdapter.Update(databaseForLabDataSet);
+                supplierTableAdapter.Update(databaseForLabDataSet);
+                stockTableAdapter.Update(databaseForLabDataSet);
+                employeeTableAdapter.Update(databaseForLabDataSet);
+            }
+            catch
+            {
+                productTableAdapter.Fill(databaseForLabDataSet.Product);
+                stockTableAdapter.Fill(databaseForLabDataSet.Stock);
+                employeeTableAdapter.Fill(databaseForLabDataSet.Employee);
+                supplierTableAdapter.Fill(databaseForLabDataSet.Supplier);
+                dataGridView1.Rows[selected].ErrorText = "Существуют связанные дочерние элементы";
+
+
+            }
         }
     }
 }

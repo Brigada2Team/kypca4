@@ -50,6 +50,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,6 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChartForm.Designer.cs">
+      <DependentUpon>ChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateInvoice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,12 +120,21 @@
     <Compile Include="ReportForm.Designer.cs">
       <DependentUpon>ReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StockEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockEditForm.Designer.cs">
+      <DependentUpon>StockEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StockProductsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="StockProductsForm.Designer.cs">
       <DependentUpon>StockProductsForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ChartForm.resx">
+      <DependentUpon>ChartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateInvoice.resx">
       <DependentUpon>CreateInvoice.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForm.resx">
       <DependentUpon>ReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockEditForm.resx">
+      <DependentUpon>StockEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StockProductsForm.resx">
       <DependentUpon>StockProductsForm.cs</DependentUpon>
@@ -205,6 +224,15 @@
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>

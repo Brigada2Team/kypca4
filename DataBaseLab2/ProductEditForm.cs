@@ -12,48 +12,36 @@ namespace DataBaseLab2
 {
     public partial class ProductEditForm : Form
     {
-        /// <summary>
-        /// Id студента
-        /// </summary>
+       
         private readonly string name;
-        /// <summary>
-        /// true - если запись модифицируется, false - если создаѐтся новая
-        /// </summary>
         readonly bool edit;
-        /// <summary>
-        /// конструктор формы, для создания новой записи
-        /// </summary>
+
         public ProductEditForm()
         {
             InitializeComponent();
-            
+            productTableAdapter.Fill(databaseForLabDataSet.Product);
+            comboBox_Unit.DataSource = new DataView(databaseForLabDataSet.Product).ToTable(true,"Unit");
+            comboBox_Unit.DisplayMember = "Unit";
+            comboBox_Unit.ValueMember = "Unit";
+            comboBox_Type.DataSource = new DataView(databaseForLabDataSet.Product).ToTable(true, "Type");
+            comboBox_Type.DisplayMember = "Type";
+            comboBox_Type.ValueMember = "Type";
+
         }
 
         public void ProductEditForm_Load(object sender, EventArgs e)
         {
-            productTableAdapter.Fill(databaseForLabDataSet.Product);
+
         }
-        /// <summary>
-        /// конструктор формы, для модификации уже существующей записи
-        /// </summary>
-        /// <param name="name">ФИО</param>
-        /// <param name="colonizeDate">Дата заселения</param>
-        /// <param name="gender">Пол</param>
-        /// <param name="address">Адрес</param>
-        /// <param name="group">Группа</param>
-        /// <param name="benefitCode">Тип льготы</param>
-        /// <param name="passport">Паспорт</param>
-        /// <param name="roomNumber">Номер комнаты</param>
-        /// <param name="id">ID студента</param>
         public ProductEditForm(string name, string unit, decimal cost, string type)
          : this()
         {
             edit = true;
             this.name = name;
             textBox_Name.Text = name;
-            comboBox_Unit.SelectedItem = unit;
+            comboBox_Unit.SelectedValue = unit;
             textBox_UnitCost.Text = cost.ToString();
-            textBox_Type.Text = type;
+            comboBox_Type.SelectedValue = type;
         }
         private void button_OK_Click(object sender, EventArgs e)
         {
@@ -61,12 +49,12 @@ namespace DataBaseLab2
             if (edit)
             {
                 productTableAdapter.UpdateQuery(textBox_Name.Text, comboBox_Unit.Text, Convert.ToDecimal(textBox_UnitCost.Text),
-                textBox_Type.Text,name);
+                comboBox_Type.Text, name);
             }
             else
             {
                 productTableAdapter.Insert(textBox_Name.Text, comboBox_Unit.Text, Convert.ToDouble(textBox_UnitCost.Text),
-               textBox_Type.Text);
+               comboBox_Type.Text);
             }
             Close();
         }

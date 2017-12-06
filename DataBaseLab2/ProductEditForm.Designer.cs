@@ -44,7 +44,6 @@ namespace DataBaseLab2
             this.textBox_Name = new System.Windows.Forms.TextBox();
             this.comboBox_Unit = new System.Windows.Forms.ComboBox();
             this.textBox_UnitCost = new System.Windows.Forms.TextBox();
-            this.textBox_Type = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -54,6 +53,7 @@ namespace DataBaseLab2
             this.productTableAdapter = new DataBaseLab2.DatabaseForLabDataSetTableAdapters.ProductTableAdapter();
             this.button_OK = new System.Windows.Forms.Button();
             this.button_Cancel = new System.Windows.Forms.Button();
+            this.comboBox_Type = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.databaseForLabDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -68,10 +68,6 @@ namespace DataBaseLab2
             // comboBox_Unit
             // 
             this.comboBox_Unit.FormattingEnabled = true;
-            this.comboBox_Unit.Items.AddRange(new object[] {
-            "Шт",
-            "Кг",
-            "Л"});
             this.comboBox_Unit.Location = new System.Drawing.Point(139, 39);
             this.comboBox_Unit.Name = "comboBox_Unit";
             this.comboBox_Unit.Size = new System.Drawing.Size(100, 21);
@@ -83,13 +79,6 @@ namespace DataBaseLab2
             this.textBox_UnitCost.Name = "textBox_UnitCost";
             this.textBox_UnitCost.Size = new System.Drawing.Size(100, 20);
             this.textBox_UnitCost.TabIndex = 2;
-            // 
-            // textBox_Type
-            // 
-            this.textBox_Type.Location = new System.Drawing.Point(139, 92);
-            this.textBox_Type.Name = "textBox_Type";
-            this.textBox_Type.Size = new System.Drawing.Size(100, 20);
-            this.textBox_Type.TabIndex = 3;
             // 
             // label1
             // 
@@ -156,18 +145,26 @@ namespace DataBaseLab2
             this.button_Cancel.UseVisualStyleBackColor = true;
             this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
             // 
+            // comboBox_Type
+            // 
+            this.comboBox_Type.FormattingEnabled = true;
+            this.comboBox_Type.Location = new System.Drawing.Point(139, 92);
+            this.comboBox_Type.Name = "comboBox_Type";
+            this.comboBox_Type.Size = new System.Drawing.Size(100, 21);
+            this.comboBox_Type.TabIndex = 10;
+            // 
             // ProductEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(247, 158);
+            this.Controls.Add(this.comboBox_Type);
             this.Controls.Add(this.button_Cancel);
             this.Controls.Add(this.button_OK);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox_Type);
             this.Controls.Add(this.textBox_UnitCost);
             this.Controls.Add(this.comboBox_Unit);
             this.Controls.Add(this.textBox_Name);
@@ -185,7 +182,6 @@ namespace DataBaseLab2
         private System.Windows.Forms.TextBox textBox_Name;
         private System.Windows.Forms.ComboBox comboBox_Unit;
         private System.Windows.Forms.TextBox textBox_UnitCost;
-        private System.Windows.Forms.TextBox textBox_Type;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -195,5 +191,6 @@ namespace DataBaseLab2
         private DatabaseForLabDataSetTableAdapters.ProductTableAdapter productTableAdapter;
         private Button button_OK;
         private Button button_Cancel;
+        private ComboBox comboBox_Type;
     }
 }
