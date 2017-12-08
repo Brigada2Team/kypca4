@@ -7310,11 +7310,11 @@ SELECT ProductName, NumOfInvoice, Amount FROM ProductInInvoice WHERE (ProductNam
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NumOfInvoice", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "NumOfInvoice", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT        Supplier.Name, Product.CostPerUnit, ProductInInvoice.Amount, ProductInInvoice.ProductName, ProductInInvoice.NumOfInvoice
+            this._commandCollection[2].CommandText = @"SELECT        Supplier.Name, Product.CostPerUnit, ProductInInvoice.Amount, ProductInInvoice.NumOfInvoice, ProductInInvoice.ProductName
 FROM            ProductInInvoice INNER JOIN
                          Invoice ON ProductInInvoice.NumOfInvoice = Invoice.Num INNER JOIN
-                         Supplier ON Supplier.Name = Invoice.Supplier INNER JOIN
-                         Product ON Product.Name = ProductInInvoice.ProductName
+                         Supplier ON Invoice.Supplier = Supplier.Name INNER JOIN
+                         Product ON ProductInInvoice.ProductName = Product.Name
 WHERE        (Supplier.Name = @supplier)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@supplier", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

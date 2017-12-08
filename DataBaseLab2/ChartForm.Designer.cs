@@ -29,12 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(3D, 2D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 5D);
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.databaseForLabDataSet = new DataBaseLab2.DatabaseForLabDataSet();
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
@@ -50,7 +47,7 @@
             this.stockBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.stockTableAdapter = new DataBaseLab2.DatabaseForLabDataSetTableAdapters.StockTableAdapter();
             this.supplierTableAdapter = new DataBaseLab2.DatabaseForLabDataSetTableAdapters.SupplierTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseForLabDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
@@ -60,24 +57,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.productInInvoiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // chart1
-            // 
-            this.chart1.Location = new System.Drawing.Point(22, 12);
-            this.chart1.Name = "chart1";
-            series1.LabelForeColor = System.Drawing.Color.BlanchedAlmond;
-            series1.Name = "Series1";
-            series1.Points.Add(dataPoint1);
-            series1.Points.Add(dataPoint2);
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(300, 300);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
-            title1.Name = "fihst";
-            title2.Name = "sechond";
-            this.chart1.Titles.Add(title1);
-            this.chart1.Titles.Add(title2);
             // 
             // bindingSource1
             // 
@@ -147,16 +128,33 @@
             // 
             this.supplierTableAdapter.ClearBeforeFill = true;
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(13, 13);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.LegendText = "Сумма поставок за всё время";
+            series1.Name = "Suppliers";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(553, 371);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            // 
             // ChartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(383, 332);
+            this.ClientSize = new System.Drawing.Size(578, 396);
             this.Controls.Add(this.chart1);
             this.Name = "ChartForm";
             this.Text = "ChartFom";
             this.Load += new System.EventHandler(this.ChartForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.Shown += new System.EventHandler(this.ChartForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseForLabDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
@@ -166,13 +164,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.productInInvoiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.BindingSource bindingSource1;
         private DatabaseForLabDataSet databaseForLabDataSet;
         private System.Windows.Forms.BindingSource bindingSource2;
@@ -188,5 +185,6 @@
         private DatabaseForLabDataSetTableAdapters.StockTableAdapter stockTableAdapter;
         private System.Windows.Forms.BindingSource supplierBindingSource;
         private DatabaseForLabDataSetTableAdapters.SupplierTableAdapter supplierTableAdapter;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

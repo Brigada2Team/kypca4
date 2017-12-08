@@ -50,6 +50,8 @@
             this.invoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.открытьДокументНакладнойToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.статистикаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.stockBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -71,8 +73,6 @@
             this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.employeeTableAdapter = new DataBaseLab2.DatabaseForLabDataSetTableAdapters.EmployeeTableAdapter();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.открытьДокументНакладнойToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.статистикаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -236,16 +236,30 @@
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
             this.addToolStripMenuItem.Text = "Добавить новую накладную";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // displayToolStripMenuItem
             // 
             this.displayToolStripMenuItem.Name = "displayToolStripMenuItem";
-            this.displayToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.displayToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
             this.displayToolStripMenuItem.Text = "Просмотреть накладные";
             this.displayToolStripMenuItem.Click += new System.EventHandler(this.displayToolStripMenuItem_Click);
+            // 
+            // открытьДокументНакладнойToolStripMenuItem
+            // 
+            this.открытьДокументНакладнойToolStripMenuItem.Name = "открытьДокументНакладнойToolStripMenuItem";
+            this.открытьДокументНакладнойToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.открытьДокументНакладнойToolStripMenuItem.Text = "Открыть документ накладной";
+            this.открытьДокументНакладнойToolStripMenuItem.Click += new System.EventHandler(this.reportFormToolStripMenuItem_Click);
+            // 
+            // статистикаToolStripMenuItem
+            // 
+            this.статистикаToolStripMenuItem.Name = "статистикаToolStripMenuItem";
+            this.статистикаToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.статистикаToolStripMenuItem.Text = "Статистика";
+            this.статистикаToolStripMenuItem.Click += new System.EventHandler(this.статистикаToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -412,20 +426,6 @@
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
             this.richTextBox1.Visible = false;
-            // 
-            // открытьДокументНакладнойToolStripMenuItem
-            // 
-            this.открытьДокументНакладнойToolStripMenuItem.Name = "открытьДокументНакладнойToolStripMenuItem";
-            this.открытьДокументНакладнойToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
-            this.открытьДокументНакладнойToolStripMenuItem.Text = "Открыть документ накладной";
-            this.открытьДокументНакладнойToolStripMenuItem.Click += new System.EventHandler(this.reportFormToolStripMenuItem_Click);
-            // 
-            // статистикаToolStripMenuItem
-            // 
-            this.статистикаToolStripMenuItem.Name = "статистикаToolStripMenuItem";
-            this.статистикаToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
-            this.статистикаToolStripMenuItem.Text = "Статистика";
-            this.статистикаToolStripMenuItem.Click += new System.EventHandler(this.статистикаToolStripMenuItem_Click);
             // 
             // Form1
             // 

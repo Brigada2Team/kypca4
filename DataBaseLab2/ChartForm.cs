@@ -18,16 +18,7 @@ namespace DataBaseLab2
         {
             InitializeComponent();
 
-            DataRow[] suppliers = databaseForLabDataSet.Supplier.Select("Name");
-            for (int i = 0; i < suppliers.Length; i++)
-            {
-                DataTable table = productInInvoiceTableAdapter.GetSupplierProductsBy(suppliers[i].ItemArray[0].ToString());
-                double sum = 0;
-                for (int j = 0; j < table.Rows.Count; j++)
-                    sum += Convert.ToDouble(table.Rows[j].ItemArray[1]) * Convert.ToDouble(table.Rows[j].ItemArray[2]);
-                chart1.Series[0].Points.AddY(sum);
 
-            }
         }
 
         private void ChartForm_Load(object sender, EventArgs e)
@@ -49,6 +40,21 @@ namespace DataBaseLab2
 
 
 
+        }
+
+        private void ChartForm_Shown(object sender, EventArgs e)
+        {
+            
+            
+            for (int i = 0; i < databaseForLabDataSet.Supplier.Select().Length; i++)
+            {
+                DataTable table = productInInvoiceTableAdapter.GetSupplierProductsBy(databaseForLabDataSet.Supplier.Rows[i].ItemArray[0].ToString());
+                double sum = 0;
+                for (int j = 0; j < table.Rows.Count; j++)
+                    sum += Convert.ToDouble(table.Rows[j].ItemArray[1]) * Convert.ToDouble(table.Rows[j].ItemArray[2]);
+                chart1.Series["Suppliers"].Points.AddXY(databaseForLabDataSet.Supplier.Rows[i].ItemArray[0].ToString(), sum);
+
+            }
         }
     }
 }
