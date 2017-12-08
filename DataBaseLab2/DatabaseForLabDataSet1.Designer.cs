@@ -7314,9 +7314,9 @@ SELECT ProductName, NumOfInvoice, Amount FROM ProductInInvoice WHERE (ProductNam
 JOIN dbo.Invoice ON ProductInInvoice.NumOfInvoice = Invoice.Num
 JOIN dbo.Supplier ON Supplier.Name=Invoice.Supplier
 JOIN dbo.Product ON Product.Name=ProductInInvoice.ProductName
-where (supplier.name = @supplier)";
+WHERE (Supplier.Name=@supplierName)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@supplier", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@supplierName", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = "UPDATE [dbo].[ProductInInvoice] SET [ProductName] = @ProductName, [NumOfInvoice] " +
@@ -7394,13 +7394,13 @@ where (supplier.name = @supplier)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillSupplierProductsBy(DatabaseForLabDataSet.ProductInInvoiceDataTable dataTable, string supplier) {
+        public virtual int FillSupplierProductsBy(DatabaseForLabDataSet.ProductInInvoiceDataTable dataTable, string supplierName) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
-            if ((supplier == null)) {
-                throw new global::System.ArgumentNullException("supplier");
+            if ((supplierName == null)) {
+                throw new global::System.ArgumentNullException("supplierName");
             }
             else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(supplier));
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(supplierName));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -7413,13 +7413,13 @@ where (supplier.name = @supplier)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual DatabaseForLabDataSet.ProductInInvoiceDataTable GetSupplierProductsBy(string supplier) {
+        public virtual DatabaseForLabDataSet.ProductInInvoiceDataTable GetSupplierProductsBy(string supplierName) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
-            if ((supplier == null)) {
-                throw new global::System.ArgumentNullException("supplier");
+            if ((supplierName == null)) {
+                throw new global::System.ArgumentNullException("supplierName");
             }
             else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(supplier));
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(supplierName));
             }
             DatabaseForLabDataSet.ProductInInvoiceDataTable dataTable = new DatabaseForLabDataSet.ProductInInvoiceDataTable();
             this.Adapter.Fill(dataTable);

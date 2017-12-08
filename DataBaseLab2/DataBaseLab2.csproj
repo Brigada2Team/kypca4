@@ -114,12 +114,6 @@
     <Compile Include="QueryEdit.Designer.cs">
       <DependentUpon>QueryEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReportForm.Designer.cs">
-      <DependentUpon>ReportForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="StockEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,9 +155,6 @@
     </Compile>
     <EmbeddedResource Include="QueryEdit.resx">
       <DependentUpon>QueryEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReportForm.resx">
-      <DependentUpon>ReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StockEditForm.resx">
       <DependentUpon>StockEditForm.cs</DependentUpon>

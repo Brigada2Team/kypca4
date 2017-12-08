@@ -50,7 +50,6 @@
             this.invoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.stockBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -71,6 +70,9 @@
             this.supplierTableAdapter = new DataBaseLab2.DatabaseForLabDataSetTableAdapters.SupplierTableAdapter();
             this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.employeeTableAdapter = new DataBaseLab2.DatabaseForLabDataSetTableAdapters.EmployeeTableAdapter();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.открытьДокументНакладнойToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.статистикаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -129,7 +131,7 @@
             this.tableToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.invoiceToolStripMenuItem,
-            this.reportFormToolStripMenuItem});
+            this.статистикаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(483, 24);
@@ -225,7 +227,8 @@
             // 
             this.invoiceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addToolStripMenuItem,
-            this.displayToolStripMenuItem});
+            this.displayToolStripMenuItem,
+            this.открытьДокументНакладнойToolStripMenuItem});
             this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
             this.invoiceToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
             this.invoiceToolStripMenuItem.Text = "Накладная";
@@ -243,13 +246,6 @@
             this.displayToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.displayToolStripMenuItem.Text = "Просмотреть накладные";
             this.displayToolStripMenuItem.Click += new System.EventHandler(this.displayToolStripMenuItem_Click);
-            // 
-            // reportFormToolStripMenuItem
-            // 
-            this.reportFormToolStripMenuItem.Name = "reportFormToolStripMenuItem";
-            this.reportFormToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
-            this.reportFormToolStripMenuItem.Text = "ReportForm";
-            this.reportFormToolStripMenuItem.Click += new System.EventHandler(this.reportFormToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -408,11 +404,35 @@
             // 
             this.employeeTableAdapter.ClearBeforeFill = true;
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(349, 117);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(16, 14);
+            this.richTextBox1.TabIndex = 5;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.Visible = false;
+            // 
+            // открытьДокументНакладнойToolStripMenuItem
+            // 
+            this.открытьДокументНакладнойToolStripMenuItem.Name = "открытьДокументНакладнойToolStripMenuItem";
+            this.открытьДокументНакладнойToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.открытьДокументНакладнойToolStripMenuItem.Text = "Открыть документ накладной";
+            this.открытьДокументНакладнойToolStripMenuItem.Click += new System.EventHandler(this.reportFormToolStripMenuItem_Click);
+            // 
+            // статистикаToolStripMenuItem
+            // 
+            this.статистикаToolStripMenuItem.Name = "статистикаToolStripMenuItem";
+            this.статистикаToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.статистикаToolStripMenuItem.Text = "Статистика";
+            this.статистикаToolStripMenuItem.Click += new System.EventHandler(this.статистикаToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(483, 336);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
@@ -474,13 +494,15 @@
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripMenuItem displayToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reportFormToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem QueryEditToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem employersToolStripMenuItem;
         private System.Windows.Forms.BindingSource employeeBindingSource;
         private DatabaseForLabDataSetTableAdapters.EmployeeTableAdapter employeeTableAdapter;
         private System.Windows.Forms.ToolStripButton AddItemStripButton;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ToolStripMenuItem открытьДокументНакладнойToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem статистикаToolStripMenuItem;
     }
 }
 

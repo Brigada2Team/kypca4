@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Word;
 
 namespace DataBaseLab2
 {
@@ -36,7 +37,7 @@ namespace DataBaseLab2
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
             
         }
 
@@ -100,8 +101,56 @@ namespace DataBaseLab2
 
         private void reportFormToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChartForm report = new ChartForm();
-            report.ShowDialog();
+            Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
+            Document doc = new Document();
+            object readOnly = false;
+            object isVisible = true;
+            object missing = System.Reflection.Missing.Value;
+            OpenFileDialog dial = new OpenFileDialog();
+            dial.ShowDialog();
+            object filename = dial.FileName;
+
+            doc = app.Documents.Open(ref filename, ref missing, ref readOnly, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref isVisible);
+            doc.Content.Select();
+            doc.Content.Copy();
+            richTextBox1.Clear();
+            richTextBox1.Paste();
+            
+            doc.Close();
+            app.Quit();
+            string[] splitted = richTextBox1.Text.Split(new string[] { "\t" }, StringSplitOptions.None);
+            string[] splittedHeader = splitted[0].Split(new string[] { "\n" }, StringSplitOptions.None);
+            bool isDelivery = false;
+
+            if (splittedHeader[0].Substring(10, 4) == "отпр") isDelivery = false;
+            else if (splittedHeader[0].Substring(10, 4) == "пост") isDelivery = true;
+            string organisation = splittedHeader[2].Substring(13);
+            int stockNum = Convert.ToInt32(splittedHeader[3].Split(',')[0].Substring(7));
+            int employeeId = Convert.ToInt32(splittedHeader[4].Split(',')[1].Substring(4));
+            DateTime date = Convert.ToDateTime(splittedHeader[5].Substring(5));
+            string[,] products = new string[(splitted.Length - 7) / 6, 5];
+            for (int i = 6; i < splitted.Length - 1; i++)
+            {
+                products[i / 6 - 1, i % 6] = splitted[i++].Substring(1);
+                products[i / 6 - 1, i % 6] = splitted[i++];
+                products[i / 6 - 1, i % 6] = splitted[i++];
+                products[i / 6 - 1, i % 6] = splitted[i++];
+                products[i / 6 - 1, i % 6] = splitted[i++];
+            }
+
+            if (organisation != databaseForLabDataSet.Supplier.Select("Name='" + organisation + "'")[0].ItemArray[0].ToString())
+            {
+                supplierTableAdapter.Insert(organisation, null);
+            }
+            for (int i = 0; i < products.GetLength(0); i++)
+            {
+                if (products[i, 0] != databaseForLabDataSet.Product.Select("Name='" + products[i, 0] + "'")[0].ItemArray[0].ToString())
+                {
+                    productTableAdapter.Insert(products[i, 0], products[i, 1], Convert.ToDouble(products[i, 2]), products[i, 3]);
+                }
+            }
+            CreateInvoice form = new CreateInvoice(isDelivery, organisation, stockNum, employeeId, date, products);
+            form.ShowDialog();
         }
 
         private void QueryEditToolStripMenuItem_Click(object sender, EventArgs e)
@@ -175,6 +224,12 @@ namespace DataBaseLab2
 
 
             }
+        }
+
+        private void статистикаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new ChartForm();
+            form.Show();
         }
     }
 }

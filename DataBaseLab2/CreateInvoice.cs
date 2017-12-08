@@ -15,7 +15,38 @@ namespace DataBaseLab2
         public CreateInvoice()
         {
             InitializeComponent();
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.ProductInStock". При необходимости она может быть перемещена или удалена.
+            this.productInStockTableAdapter.Fill(this.databaseForLabDataSet.ProductInStock);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.Employee". При необходимости она может быть перемещена или удалена.
+            this.employeeTableAdapter.Fill(this.databaseForLabDataSet.Employee);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.Stock". При необходимости она может быть перемещена или удалена.
+            this.stockTableAdapter.Fill(this.databaseForLabDataSet.Stock);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.Supplier". При необходимости она может быть перемещена или удалена.
+            this.supplierTableAdapter.Fill(this.databaseForLabDataSet.Supplier);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.Product". При необходимости она может быть перемещена или удалена.
+            this.productTableAdapter.Fill(this.databaseForLabDataSet.Product);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.ProductInInvoice". При необходимости она может быть перемещена или удалена.
+            this.productInInvoiceTableAdapter.Fill(this.databaseForLabDataSet.ProductInInvoice);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.Invoice". При необходимости она может быть перемещена или удалена.
+            this.invoiceTableAdapter.Fill(this.databaseForLabDataSet.Invoice);
+            invoiceNumLabel.Text += invoiceTableAdapter.MaxId() + 1;
         }
+        public CreateInvoice(bool isDeliveryBool,string organisation,int stock,int emp,DateTime date, string[,] products) : this()
+        {
+            IsDelivery.Checked = isDeliveryBool;
+            SuppliercomboBox.SelectedValue = organisation;
+            StockComboBox.SelectedValue= stock;
+            EmployeeComboBox.SelectedValue = emp;
+            DateTimePicker.Value = date;
+            for(int i = 0; i < products.GetLength(0); i++)
+            {
+                dataGridView1.Rows.Add();
+                dataGridView1.Rows[i].Cells[0].Value = products[i, 0];
+                dataGridView1.Rows[i].Cells[1].Value = products[i, 3];
+                
+            }
+        }
+		
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
@@ -80,21 +111,7 @@ namespace DataBaseLab2
 
         private void CreateInvoice_Load(object sender, EventArgs e)
         {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.ProductInStock". При необходимости она может быть перемещена или удалена.
-            this.productInStockTableAdapter.Fill(this.databaseForLabDataSet.ProductInStock);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.Employee". При необходимости она может быть перемещена или удалена.
-            this.employeeTableAdapter.Fill(this.databaseForLabDataSet.Employee);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.Stock". При необходимости она может быть перемещена или удалена.
-            this.stockTableAdapter.Fill(this.databaseForLabDataSet.Stock);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.Supplier". При необходимости она может быть перемещена или удалена.
-            this.supplierTableAdapter.Fill(this.databaseForLabDataSet.Supplier);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.Product". При необходимости она может быть перемещена или удалена.
-            this.productTableAdapter.Fill(this.databaseForLabDataSet.Product);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.ProductInInvoice". При необходимости она может быть перемещена или удалена.
-            this.productInInvoiceTableAdapter.Fill(this.databaseForLabDataSet.ProductInInvoice);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "databaseForLabDataSet.Invoice". При необходимости она может быть перемещена или удалена.
-            this.invoiceTableAdapter.Fill(this.databaseForLabDataSet.Invoice);
-            invoiceNumLabel.Text += invoiceTableAdapter.MaxId() + 1;
+
         }
 
         private void StockComboBox_SelectedValueChanged(object sender, EventArgs e)

@@ -70,8 +70,8 @@ namespace DataBaseLab2
             r.Range.Bold = 0;
             r.Range.Text +=
                 "\nОрганизация: "+ invoiceRow[0].ItemArray[3]+
-                "\nCклад №" +invoiceRow[0].ItemArray[1]+", "+stockRows[Convert.ToInt32(invoiceRow[0].ItemArray[1])].ItemArray[1]
-                +"\nСотрудник склада: "+employeeRows[Convert.ToInt32(invoiceRow[0].ItemArray[2])].ItemArray[1]+", Id: "+ employeeRows[Convert.ToInt32(invoiceRow[0].ItemArray[2])].ItemArray[0]
+                "\nCклад №" +invoiceRow[0].ItemArray[1]+", "+stockRows[Convert.ToInt32(invoiceRow[0].ItemArray[1])-1].ItemArray[1]
+                +"\nСотрудник склада: "+employeeRows[Convert.ToInt32(invoiceRow[0].ItemArray[2])-1].ItemArray[1]+", Id: "+ employeeRows[Convert.ToInt32(invoiceRow[0].ItemArray[2])-1].ItemArray[0]
                 + "\nДата: "+invoiceRow[0].ItemArray[4];
             r.Range.InsertParagraphAfter();
 
