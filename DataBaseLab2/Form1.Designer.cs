@@ -420,7 +420,7 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(349, 117);
+            this.richTextBox1.Location = new System.Drawing.Point(141, 238);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(16, 14);
             this.richTextBox1.TabIndex = 5;
@@ -432,11 +432,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(483, 336);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.dataGridView1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";

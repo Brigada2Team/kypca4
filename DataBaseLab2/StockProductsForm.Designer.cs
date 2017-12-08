@@ -51,6 +51,13 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.print_button = new System.Windows.Forms.Button();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.productInStockBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productInStockTableAdapter = new DataBaseLab2.DatabaseForLabDataSetTableAdapters.ProductInStockTableAdapter();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productTableAdapter = new DataBaseLab2.DatabaseForLabDataSetTableAdapters.ProductTableAdapter();
             numLabel = new System.Windows.Forms.Label();
             addressLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.databaseForLabDataSet)).BeginInit();
@@ -58,6 +65,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productInStockBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // numLabel
@@ -109,6 +120,7 @@
             this.numTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.stockBindingSource, "Num", true));
             this.numTextBox.Location = new System.Drawing.Point(94, 34);
             this.numTextBox.Name = "numTextBox";
+            this.numTextBox.ReadOnly = true;
             this.numTextBox.Size = new System.Drawing.Size(100, 20);
             this.numTextBox.TabIndex = 1;
             this.numTextBox.TextChanged += new System.EventHandler(this.numTextBox_TextChanged);
@@ -118,6 +130,7 @@
             this.addressTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.stockBindingSource, "Address", true));
             this.addressTextBox.Location = new System.Drawing.Point(94, 60);
             this.addressTextBox.Name = "addressTextBox";
+            this.addressTextBox.ReadOnly = true;
             this.addressTextBox.Size = new System.Drawing.Size(100, 20);
             this.addressTextBox.TabIndex = 3;
             // 
@@ -157,7 +170,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(294, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(263, 25);
             this.bindingNavigator1.TabIndex = 8;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -248,11 +261,49 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // print_button
+            // 
+            this.print_button.Location = new System.Drawing.Point(331, 37);
+            this.print_button.Name = "print_button";
+            this.print_button.Size = new System.Drawing.Size(75, 23);
+            this.print_button.TabIndex = 9;
+            this.print_button.Text = "Печать";
+            this.print_button.UseVisualStyleBackColor = true;
+            this.print_button.Click += new System.EventHandler(this.print_button_Click);
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = this.databaseForLabDataSet;
+            this.bindingSource1.Position = 0;
+            // 
+            // bindingSource2
+            // 
+            this.bindingSource2.DataSource = this.productBindingSource;
+            // 
+            // productInStockBindingSource
+            // 
+            this.productInStockBindingSource.DataMember = "ProductInStock";
+            this.productInStockBindingSource.DataSource = this.bindingSource1;
+            // 
+            // productInStockTableAdapter
+            // 
+            this.productInStockTableAdapter.ClearBeforeFill = true;
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataMember = "Product";
+            this.productBindingSource.DataSource = this.bindingSource1;
+            // 
+            // productTableAdapter
+            // 
+            this.productTableAdapter.ClearBeforeFill = true;
+            // 
             // StockProductsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 582);
+            this.ClientSize = new System.Drawing.Size(626, 283);
+            this.Controls.Add(this.print_button);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(numLabel);
@@ -268,6 +319,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productInStockBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,5 +349,12 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
+        private System.Windows.Forms.Button print_button;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.BindingSource bindingSource2;
+        private System.Windows.Forms.BindingSource productInStockBindingSource;
+        private DatabaseForLabDataSetTableAdapters.ProductInStockTableAdapter productInStockTableAdapter;
+        private System.Windows.Forms.BindingSource productBindingSource;
+        private DatabaseForLabDataSetTableAdapters.ProductTableAdapter productTableAdapter;
     }
 }
