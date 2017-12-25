@@ -63,7 +63,7 @@ namespace DataBaseLab2
         {
             bindingNavigator1.BindingSource =supplierBindingSource;
             dataGridView1.DataSource = supplierBindingSource;
-            label1.Text = "Поставщики";
+            label1.Text = "Организации";
         }
 
         private void stockToolStripMenuItem_Click(object sender, EventArgs e)
@@ -181,6 +181,19 @@ namespace DataBaseLab2
                 stockTableAdapter.Fill(databaseForLabDataSet.Stock);
             }
                 databaseForLabDataSet.AcceptChanges();
+            if (label1.Text == "Организации")
+            {
+                var edt = new SupplierEditForm();
+                edt.ShowDialog();
+                supplierTableAdapter.Fill(databaseForLabDataSet.Supplier);
+            }
+            if (label1.Text == "Работяги")
+            {
+                var edt = new EmployeeEditForm();
+                edt.ShowDialog();
+                employeeTableAdapter.Fill(databaseForLabDataSet.Employee);
+            }
+
         }
 
 
@@ -195,11 +208,23 @@ namespace DataBaseLab2
                 edt.ShowDialog();
                 productTableAdapter.Fill(databaseForLabDataSet.Product);
             }
-            if (label1.Text == "Склады")
+            else if (label1.Text == "Склады")
             {
                 var edt = new StockEditForm(Convert.ToInt32(selectedRow[0].Value), selectedRow[1].Value.ToString());
                 edt.ShowDialog();
                 stockTableAdapter.Fill(databaseForLabDataSet.Stock);
+            }
+            else if (label1.Text == "Организации")
+            {
+                var edt = new SupplierEditForm(selectedRow[0].Value.ToString(), selectedRow[1].Value.ToString());
+                edt.ShowDialog();
+                supplierTableAdapter.Fill(databaseForLabDataSet.Supplier);
+            }
+            else if (label1.Text == "Работяги")
+            {
+                var edt = new EmployeeEditForm(Convert.ToInt32(selectedRow[0].Value), selectedRow[1].Value.ToString(), Convert.ToInt32(selectedRow[2].Value.ToString()), selectedRow[3].Value.ToString(), selectedRow[4].Value.ToString(), Convert.ToDateTime(selectedRow[5].Value));
+                edt.ShowDialog();
+                employeeTableAdapter.Fill(databaseForLabDataSet.Employee);
             }
         }
 
