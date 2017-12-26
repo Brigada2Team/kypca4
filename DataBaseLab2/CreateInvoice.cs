@@ -81,32 +81,37 @@ namespace DataBaseLab2
                 selectedRow.Cells[1].ErrorText = string.Empty;
 
             }
-                invoiceTableAdapter.InsertQuery( prodStock, Convert.ToInt32(EmployeeComboBox.SelectedValue), SuppliercomboBox.SelectedValue.ToString(), DateTimePicker.Value, IsDelivery.Checked);
+            invoiceTableAdapter.InsertQuery( prodStock, Convert.ToInt32(EmployeeComboBox.SelectedValue), SuppliercomboBox.SelectedValue.ToString(), DateTimePicker.Value, IsDelivery.Checked);
             for(int i = 0; !dataGridView1.Rows[i].IsNewRow; i++)
             {
                 string prodName = dataGridView1.Rows[i].Cells[0].Value.ToString();
                 double prodAmount = Convert.ToDouble(dataGridView1.Rows[i].Cells[1].Value);
 
-               productInInvoiceTableAdapter.Insert(
+                productInInvoiceTableAdapter.Insert(
                    prodName, 
                    Convert.ToInt32(invoiceTableAdapter.MaxId().Value),
                    prodAmount);
+
                 if (productInStockTableAdapter.GetAmount(prodName, prodStock) == null)
                 {
                     productInStockTableAdapter.Insert(prodName, prodAmount, prodStock);
                     continue;
                 }
+
                 if (!IsDelivery.Checked)
                 prodAmount = -prodAmount;
                 productInStockTableAdapter.IncreaseAmount(prodAmount,
                     prodName,
                    prodStock);
+
                 if (productInStockTableAdapter.GetAmount(prodName,prodStock) == 0)
                     productInStockTableAdapter.DeleteQuery(prodName,prodStock);
-
+            }
+            if(MessageBox.Show("Накладная успешно добавлена", "Success", MessageBoxButtons.OK)==DialogResult.OK)
+            {
+                Close();
 
             }
-            
         }
 
         private void CreateInvoice_Load(object sender, EventArgs e)

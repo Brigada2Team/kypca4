@@ -44,17 +44,47 @@ namespace DataBaseLab2
 
         private void ChartForm_Shown(object sender, EventArgs e)
         {
-            
-            
+            chart1.Series["Suppliers"].Points.Clear();
+
+
             for (int i = 0; i < databaseForLabDataSet.Supplier.Select().Length; i++)
             {
-                DataTable table = productInInvoiceTableAdapter.GetSupplierProductsBy(databaseForLabDataSet.Supplier.Rows[i].ItemArray[0].ToString());
+                DateTime min = dateTimePicker1.Value;
+                DateTime max = dateTimePicker2.Value;
+                DataTable table = productInInvoiceTableAdapter.GetSupplierProductsBy(databaseForLabDataSet.Supplier.Rows[i].ItemArray[0].ToString(),min,max);
                 double sum = 0;
                 for (int j = 0; j < table.Rows.Count; j++)
+                   
                     sum += Convert.ToDouble(table.Rows[j].ItemArray[1]) * Convert.ToDouble(table.Rows[j].ItemArray[2]);
                 chart1.Series["Suppliers"].Points.AddXY(databaseForLabDataSet.Supplier.Rows[i].ItemArray[0].ToString(), sum);
 
             }
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif";
+            saveFileDialog1.Title = "Save an Image File";
+            saveFileDialog1.ShowDialog();
+            System.Drawing.Imaging.ImageFormat format = System.Drawing.Imaging.ImageFormat.Jpeg;
+            switch (saveFileDialog1.FilterIndex)
+            {
+                case 1:
+                    format = System.Drawing.Imaging.ImageFormat.Jpeg;
+                    break;
+
+                case 2:
+                    format = System.Drawing.Imaging.ImageFormat.Bmp;
+                    break;
+
+                case 3:
+                    format = System.Drawing.Imaging.ImageFormat.Gif;
+                    break;
+            }
+            if (saveFileDialog1.FileName != "") 
+            chart1.SaveImage(saveFileDialog1.FileName, format);
         }
     }
 }

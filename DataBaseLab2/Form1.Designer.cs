@@ -161,35 +161,35 @@
             this.suppliersToolStripMenuItem,
             this.employersToolStripMenuItem});
             this.tableToolStripMenuItem.Name = "tableToolStripMenuItem";
-            this.tableToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.tableToolStripMenuItem.Text = "Database";
+            this.tableToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.tableToolStripMenuItem.Text = "Таблицы";
             // 
             // productsToolStripMenuItem
             // 
             this.productsToolStripMenuItem.Name = "productsToolStripMenuItem";
-            this.productsToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.productsToolStripMenuItem.Text = "Products";
+            this.productsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.productsToolStripMenuItem.Text = "Продукты";
             this.productsToolStripMenuItem.Click += new System.EventHandler(this.productsToolStripMenuItem_Click);
             // 
             // stocksToolStripMenuItem
             // 
             this.stocksToolStripMenuItem.Name = "stocksToolStripMenuItem";
-            this.stocksToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.stocksToolStripMenuItem.Text = "Stocks";
+            this.stocksToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stocksToolStripMenuItem.Text = "Склады";
             this.stocksToolStripMenuItem.Click += new System.EventHandler(this.stocksToolStripMenuItem_Click);
             // 
             // suppliersToolStripMenuItem
             // 
             this.suppliersToolStripMenuItem.Name = "suppliersToolStripMenuItem";
-            this.suppliersToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.suppliersToolStripMenuItem.Text = "Suppliers";
+            this.suppliersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.suppliersToolStripMenuItem.Text = "Организации";
             this.suppliersToolStripMenuItem.Click += new System.EventHandler(this.suppliersToolStripMenuItem_Click);
             // 
             // employersToolStripMenuItem
             // 
             this.employersToolStripMenuItem.Name = "employersToolStripMenuItem";
-            this.employersToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.employersToolStripMenuItem.Text = "Employers";
+            this.employersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.employersToolStripMenuItem.Text = "Работники";
             this.employersToolStripMenuItem.Click += new System.EventHandler(this.employersToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
@@ -439,7 +439,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "ИС \"Распределении продукции по складам\"";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
