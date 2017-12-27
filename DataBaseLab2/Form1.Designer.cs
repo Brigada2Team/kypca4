@@ -167,28 +167,28 @@
             // productsToolStripMenuItem
             // 
             this.productsToolStripMenuItem.Name = "productsToolStripMenuItem";
-            this.productsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.productsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.productsToolStripMenuItem.Text = "Продукты";
             this.productsToolStripMenuItem.Click += new System.EventHandler(this.productsToolStripMenuItem_Click);
             // 
             // stocksToolStripMenuItem
             // 
             this.stocksToolStripMenuItem.Name = "stocksToolStripMenuItem";
-            this.stocksToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stocksToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.stocksToolStripMenuItem.Text = "Склады";
             this.stocksToolStripMenuItem.Click += new System.EventHandler(this.stocksToolStripMenuItem_Click);
             // 
             // suppliersToolStripMenuItem
             // 
             this.suppliersToolStripMenuItem.Name = "suppliersToolStripMenuItem";
-            this.suppliersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.suppliersToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.suppliersToolStripMenuItem.Text = "Организации";
             this.suppliersToolStripMenuItem.Click += new System.EventHandler(this.suppliersToolStripMenuItem_Click);
             // 
             // employersToolStripMenuItem
             // 
             this.employersToolStripMenuItem.Name = "employersToolStripMenuItem";
-            this.employersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.employersToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.employersToolStripMenuItem.Text = "Работники";
             this.employersToolStripMenuItem.Click += new System.EventHandler(this.employersToolStripMenuItem_Click);
             // 
@@ -199,8 +199,8 @@
             this.inventoryToolStripMenuItem,
             this.QueryEditToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.viewToolStripMenuItem.Text = "Вид";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
+            this.viewToolStripMenuItem.Text = "Инвентарь";
             // 
             // stockToolStripMenuItem
             // 

@@ -7487,11 +7487,13 @@ FROM            ProductInInvoice INNER JOIN
                          Invoice ON ProductInInvoice.NumOfInvoice = Invoice.Num INNER JOIN
                          Supplier ON Supplier.Name = Invoice.Supplier INNER JOIN
                          Product ON Product.Name = ProductInInvoice.ProductName
-WHERE        (Supplier.Name = @supplier AND Delivery=1 AND Date>=@min AND Date <=@max)";
+WHERE        ((0=@ALL  AND Supplier.Name = @supplier AND Delivery=1 AND Date>=@min AND Date <=@max AND NumOfStock=@Stock) OR (1=@ALL  AND Supplier.Name = @supplier AND Delivery=1 AND Date>=@min AND Date <=@max))";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ALL", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@supplier", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@min", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@max", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Stock", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "NumOfStock", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = "UPDATE [dbo].[ProductInInvoice] SET [ProductName] = @ProductName, [NumOfInvoice] " +
@@ -7569,16 +7571,18 @@ WHERE        (Supplier.Name = @supplier AND Delivery=1 AND Date>=@min AND Date <
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillSupplierProductsBy(DatabaseForLabDataSet.ProductInInvoiceDataTable dataTable, string supplier, System.DateTime min, System.DateTime max) {
+        public virtual int FillSupplierProductsBy(DatabaseForLabDataSet.ProductInInvoiceDataTable dataTable, decimal ALL, string supplier, System.DateTime min, System.DateTime max, int Stock) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(ALL));
             if ((supplier == null)) {
                 throw new global::System.ArgumentNullException("supplier");
             }
             else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(supplier));
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(supplier));
             }
-            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(min));
-            this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(max));
+            this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(min));
+            this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(max));
+            this.Adapter.SelectCommand.Parameters[4].Value = ((int)(Stock));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -7590,16 +7594,18 @@ WHERE        (Supplier.Name = @supplier AND Delivery=1 AND Date>=@min AND Date <
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual DatabaseForLabDataSet.ProductInInvoiceDataTable GetSupplierProductsBy(string supplier, System.DateTime min, System.DateTime max) {
+        public virtual DatabaseForLabDataSet.ProductInInvoiceDataTable GetSupplierProductsBy(decimal ALL, string supplier, System.DateTime min, System.DateTime max, int Stock) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(ALL));
             if ((supplier == null)) {
                 throw new global::System.ArgumentNullException("supplier");
             }
             else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(supplier));
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(supplier));
             }
-            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(min));
-            this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(max));
+            this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(min));
+            this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(max));
+            this.Adapter.SelectCommand.Parameters[4].Value = ((int)(Stock));
             DatabaseForLabDataSet.ProductInInvoiceDataTable dataTable = new DatabaseForLabDataSet.ProductInInvoiceDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

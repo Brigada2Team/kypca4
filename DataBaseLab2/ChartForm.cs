@@ -39,7 +39,6 @@ namespace DataBaseLab2
 
 
 
-
         }
 
         private void ChartForm_Shown(object sender, EventArgs e)
@@ -51,7 +50,9 @@ namespace DataBaseLab2
             {
                 DateTime min = dateTimePicker1.Value;
                 DateTime max = dateTimePicker2.Value;
-                DataTable table = productInInvoiceTableAdapter.GetSupplierProductsBy(databaseForLabDataSet.Supplier.Rows[i].ItemArray[0].ToString(),min,max);
+                DataTable table;
+                if (checkBox1.Checked) table = productInInvoiceTableAdapter.GetSupplierProductsBy(1, databaseForLabDataSet.Supplier.Rows[i].ItemArray[0].ToString(), min, max, Convert.ToInt32(comboBox1.SelectedValue));
+                else  table = productInInvoiceTableAdapter.GetSupplierProductsBy(0,databaseForLabDataSet.Supplier.Rows[i].ItemArray[0].ToString(),min,max,Convert.ToInt32(comboBox1.SelectedValue));
                 double sum = 0;
                 for (int j = 0; j < table.Rows.Count; j++)
                    
@@ -85,6 +86,13 @@ namespace DataBaseLab2
             }
             if (saveFileDialog1.FileName != "") 
             chart1.SaveImage(saveFileDialog1.FileName, format);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked) comboBox1.Enabled = false;
+            else comboBox1.Enabled = true;
+            ChartForm_Shown(new object(), new EventArgs());
         }
     }
 }
